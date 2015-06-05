@@ -10,6 +10,7 @@ var misc            = "./misc/",
     src             = "./src/",
     srcLess         = src + "less/",
     dist            = "./dist/",
+    distCss         = dist + "/css/",
     bootstrap       = "./node_modules/bootstrap/",
     bootstrapLess   = bootstrap + "less/",
     themeLess       = "theme.less",
@@ -31,6 +32,7 @@ var banner = [
 
 function buildCss() {
     mkdirp(srcLess);
+    mkdirp(distCss);
 
     gulp
         .src(srcLess + themeLess)
@@ -48,12 +50,9 @@ function buildCss() {
             ]
         }))
         .pipe(header(banner, {pkg: pkg}))
-        .pipe(out(dist + bootstrapCss));
-
-    gulp
-        .src(dist + bootstrapCss)
+        .pipe(out(distCss + bootstrapCss))
         .pipe(csso())
-        .pipe(out(dist + bootstrapCssMin));
+        .pipe(out(distCss + bootstrapCssMin));
 }
 
 function installCustomTheme() {
