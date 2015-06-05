@@ -33,6 +33,12 @@ var banner = [
     ''
 ].join('\n');
 
+function buildHtml() {
+    gulp
+        .src(misc + "index.html")
+        .pipe(gulp.dest(dist));
+}
+
 function buildJs() {
     var dir = dist + "js/";
     mkdirp(dir);
@@ -108,11 +114,13 @@ gulp.task("install", function () {
 gulp.task("build_css", buildCss);
 gulp.task("build_fonts", buildFonts);
 gulp.task("build_js", buildJs);
+gulp.task("build_html", buildHtml);
 
 gulp.task("build", function () {
     buildCss();
     buildFonts();
     buildJs();
+    buildHtml();
 });
 
 // watcher
