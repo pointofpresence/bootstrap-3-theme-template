@@ -1,6 +1,7 @@
-var gulp   = require("gulp"),           // Gulp JS
-    header = require("gulp-header"),    // banner maker
-    mkdirp = require("mkdirp");         // mkdir
+var gulp         = require("gulp"),           // Gulp JS
+    header       = require("gulp-header"),    // banner maker
+    mkdirp       = require("mkdirp"),         // mkdir
+    autoprefixer = require('gulp-autoprefixer'); // Autoprefixer
 
 var misc          = "./misc/",
     src           = "./src/",
