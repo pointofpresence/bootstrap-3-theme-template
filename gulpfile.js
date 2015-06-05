@@ -1,7 +1,8 @@
-var gulp         = require("gulp"),           // Gulp JS
-    header       = require("gulp-header"),    // banner maker
-    mkdirp       = require("mkdirp"),         // mkdir
-    autoprefixer = require('gulp-autoprefixer'); // Autoprefixer
+var gulp         = require("gulp"),                 // Gulp JS
+    header       = require("gulp-header"),          // banner maker
+    mkdirp       = require("mkdirp"),               // mkdir
+    autoprefixer = require('gulp-autoprefixer'),    // Autoprefixer
+    less         = require("gulp-less");            // LESS
 
 var misc          = "./misc/",
     src           = "./src/",
@@ -23,6 +24,10 @@ var banner = [
     ''
 ].join('\n');
 
+function buildCss() {
+
+}
+
 function installCustomTheme() {
     mkdirp(srcLess);
 
@@ -41,10 +46,18 @@ function installCustomVariables() {
         .pipe(gulp.dest(srcLess));
 }
 
+// setup
 gulp.task("install_custom_variables", installCustomVariables);
 gulp.task("install_custom_theme", installCustomTheme);
 
 gulp.task("install", function () {
     installCustomVariables();
     installCustomTheme();
+});
+
+// build
+gulp.task("build_css", buildCss);
+
+gulp.task("build", function () {
+    buildCss();
 });
