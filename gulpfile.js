@@ -6,18 +6,20 @@ var gulp         = require("gulp"),                 // Gulp JS
     csso         = require('gulp-csso'),            // CSS min
     out          = require('gulp-out');             // to file
 
-var misc          = "./misc/",
-    src           = "./src/",
-    srcLess       = src + "less/",
-    dist          = "./dist/",
-    bootstrap     = "./node_modules/bootstrap/",
-    bootstrapLess = bootstrap + "less/",
-    themeFile     = "theme.less";
+var misc            = "./misc/",
+    src             = "./src/",
+    srcLess         = src + "less/",
+    dist            = "./dist/",
+    bootstrap       = "./node_modules/bootstrap/",
+    bootstrapLess   = bootstrap + "less/",
+    themeLess       = "theme.less",
+    bootstrapCss    = "bootstrap.css",
+    bootstrapCssMin = "bootstrap.min.css";
 
 var pkg = require('./package.json');
 
 var banner = [
-    '/**',
+    '/*!',
     ' * Copyright (c) <%= new Date().getFullYear() %> <%= pkg.author %>',
     ' * <%= pkg.name %> - <%= pkg.description %> - Based on Bootstrap',
     ' * @version v<%= pkg.version %>',
@@ -31,7 +33,7 @@ function buildCss() {
     mkdirp(srcLess);
 
     gulp
-        .src(srcLess + themeFile)
+        .src(srcLess + themeLess)
         .pipe(less())
         .pipe(autoprefixer({
             browsers: [
@@ -45,14 +47,20 @@ function buildCss() {
                 "Safari >= 6"
             ]
         }))
-        .pipe(out(dist + "bootstrap.css"));
+        .pipe(header(banner, {pkg: pkg}))
+        .pipe(out(dist + bootstrapCss));
+
+    gulp
+        .src(dist + bootstrapCss)
+        .pipe(csso())
+        .pipe(out(dist + bootstrapCssMin));
 }
 
 function installCustomTheme() {
     mkdirp(srcLess);
 
     gulp
-        .src(misc + themeFile)
+        .src(misc + themeLess)
         .pipe(gulp.dest(srcLess));
 }
 
