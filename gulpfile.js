@@ -13,9 +13,12 @@ var misc            = "./misc/",
     distCss         = dist + "/css/",
     bootstrap       = "./node_modules/bootstrap/",
     bootstrapLess   = bootstrap + "less/",
+    bootstrapDist   = bootstrap + "dist/",
     themeLess       = "theme.less",
     bootstrapCss    = "bootstrap.css",
-    bootstrapCssMin = "bootstrap.min.css";
+    bootstrapCssMin = "bootstrap.min.css",
+    bootstrapJs     = "bootstrap.js",
+    bootstrapJsMin  = "bootstrap.min.js";
 
 var pkg = require('./package.json');
 
@@ -29,6 +32,27 @@ var banner = [
     ' */',
     ''
 ].join('\n');
+
+function buildJs() {
+    var dir = dist + "js/";
+    mkdirp(dir);
+
+    gulp
+        .src([
+            bootstrapDist + "js/" + bootstrapJs,
+            bootstrapDist + "js/" + bootstrapJsMin
+        ])
+        .pipe(gulp.dest(dir));
+}
+
+function buildFonts() {
+    var dir = dist + "fonts/";
+    mkdirp(dir);
+
+    gulp
+        .src(bootstrapDist + "fonts/*")
+        .pipe(gulp.dest(dir));
+}
 
 function buildCss() {
     mkdirp(srcLess);
@@ -82,7 +106,11 @@ gulp.task("install", function () {
 
 // build
 gulp.task("build_css", buildCss);
+gulp.task("build_fonts", buildFonts);
+gulp.task("build_js", buildJs);
 
 gulp.task("build", function () {
     buildCss();
+    buildFonts();
+    buildJs();
 });
