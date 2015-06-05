@@ -1,0 +1,21 @@
+{
+  "name": "bootstrap-3-theme-template",
+  "version": "0.0.1",
+  "description": "Bootstrap customization set",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pointofpresence/bootstrap-3-theme-template.git"
+  },
+  "keywords": [
+    "bootstrap"
+  ],
+  "author": "pointofpresence",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pointofpresence/bootstrap-3-theme-template/issues"
+  },
+  "homepage": "https://github.com/pointofpresence/bootstrap-3-theme-template"
+}
