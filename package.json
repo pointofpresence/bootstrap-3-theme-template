@@ -20,6 +20,8 @@
   "homepage": "https://github.com/pointofpresence/bootstrap-3-theme-template",
   "devDependencies": {
     "bootstrap": "^3.3.4",
-    "gulp": "^3.9.0"
+    "gulp": "^3.9.0",
+    "gulp-header": "^1.2.2",
+    "mkdirp": "^0.5.1"
   }
 }
