@@ -3,3 +3,7 @@
 **Setup**
 
 `npm install`
+
+then
+
+`gulp install`
