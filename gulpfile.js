@@ -114,3 +114,9 @@ gulp.task("build", function () {
     buildFonts();
     buildJs();
 });
+
+// watcher
+gulp.task("watch", function () {
+    // CSS
+    gulp.watch(srcLess + "**/*.less", ["build_css"]);
+});
